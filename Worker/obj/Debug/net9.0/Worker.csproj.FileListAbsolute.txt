@@ -1,0 +1,5 @@
+/Users/amitkhemlani/CodingLab/DotNetSample/Worker/obj/Debug/net9.0/Worker.csproj.AssemblyReference.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Worker/obj/Debug/net9.0/Worker.GeneratedMSBuildEditorConfig.editorconfig
+/Users/amitkhemlani/CodingLab/DotNetSample/Worker/obj/Debug/net9.0/Worker.AssemblyInfoInputs.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Worker/obj/Debug/net9.0/Worker.AssemblyInfo.cs
+/Users/amitkhemlani/CodingLab/DotNetSample/Worker/obj/Debug/net9.0/Worker.csproj.CoreCompileInputs.cache

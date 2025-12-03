@@ -1,0 +1,14 @@
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.GeneratedMSBuildEditorConfig.editorconfig
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.AssemblyInfoInputs.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.AssemblyInfo.cs
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.csproj.CoreCompileInputs.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/bin/Debug/net8.0/Client
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/bin/Debug/net8.0/Client.deps.json
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/bin/Debug/net8.0/Client.runtimeconfig.json
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/bin/Debug/net8.0/Client.dll
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/bin/Debug/net8.0/Client.pdb
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.dll
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/refint/Client.dll
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.pdb
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/Client.genruntimeconfig.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Client/obj/Debug/net8.0/ref/Client.dll

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "pKzuNrZKohw=",
+  "success": true,
+  "projectFilePath": "/Users/amitkhemlani/CodingLab/DotNetSample/Core/Core.csproj",
+  "expectedPackageFiles": [
+    "/Users/amitkhemlani/.nuget/packages/microsoft.netcore.app.ref/8.0.19/microsoft.netcore.app.ref.8.0.19.nupkg.sha512",
+    "/Users/amitkhemlani/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.19/microsoft.aspnetcore.app.ref.8.0.19.nupkg.sha512"
+  ],
+  "logs": []
+}

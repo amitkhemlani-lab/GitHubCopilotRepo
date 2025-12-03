@@ -1,0 +1,5 @@
+/Users/amitkhemlani/CodingLab/DotNetSample/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.AssemblyReference.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Infrastructure/obj/Debug/net9.0/Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/amitkhemlani/CodingLab/DotNetSample/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfoInputs.cache
+/Users/amitkhemlani/CodingLab/DotNetSample/Infrastructure/obj/Debug/net9.0/Infrastructure.AssemblyInfo.cs
+/Users/amitkhemlani/CodingLab/DotNetSample/Infrastructure/obj/Debug/net9.0/Infrastructure.csproj.CoreCompileInputs.cache
