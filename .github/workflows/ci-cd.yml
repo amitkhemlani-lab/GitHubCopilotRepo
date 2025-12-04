@@ -1,0 +1,100 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '8.0.x' ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release --verbosity minimal
+
+      - name: Run tests
+        run: |
+          dotnet test --no-build --configuration Release --logger "trx;LogFileName=test_results.trx"
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: '**/test_results.trx'
+
+      - name: Dependency vulnerability check
+        run: dotnet list package --vulnerable --include-transitive || true
+
+      - name: Publish API artifact
+        run: |
+          dotnet publish Api/Api.csproj -c Release -o ./publish
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-publish
+          path: publish
+
+  deploy-azure:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: api-publish
+
+      - name: Deploy to Azure Web App (via publish profile)
+        if: secrets.AZURE_WEBAPP_PUBLISH_PROFILE != ''
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
+
+      - name: Deploy to Azure Web App (via Azure login)
+        if: ${{ secrets.AZURE_CREDENTIALS != '' && secrets.AZURE_WEBAPP_NAME != '' }}
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy package via Azure CLI
+        if: ${{ secrets.AZURE_CREDENTIALS != '' && secrets.AZURE_WEBAPP_NAME != '' }}
+        run: |
+          az webapp deploy --name ${{ secrets.AZURE_WEBAPP_NAME }} --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --src-path ./publish --type zip
+        env:
+          AZURE_HTTP_USER_AGENT: 'github-actions'
+
+# Notes:
+# - To enable deployment with publish profile: set secrets.AZURE_WEBAPP_PUBLISH_PROFILE (the XML content)
+# - Alternatively, create a service principal and store its JSON in secrets.AZURE_CREDENTIALS and set AZURE_WEBAPP_NAME and AZURE_RESOURCE_GROUP
+# - The workflow uploads artifacts so you can inspect test results and published output in Actions UI
+# - Customize matrix, caching, and test reporting as needed
